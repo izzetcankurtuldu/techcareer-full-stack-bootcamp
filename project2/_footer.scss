@@ -1,0 +1,27 @@
+.footer{
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  & p{
+    font-size: 14px;
+  }
+}
+
+.icons{
+  font-size: 50px;
+  margin-bottom: 40px;
+
+  & i{
+    margin-right: 40px;
+    &:hover{
+      color: #7ac0ce;
+      cursor: pointer;
+      font-size: 50px;
+    }
+  }
+}
