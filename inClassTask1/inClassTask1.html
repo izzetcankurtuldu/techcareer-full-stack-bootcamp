@@ -39,34 +39,40 @@
 
   // 2nd Question
 
+  axios.get('https://northwind.vercel.app/api/orders')
+  
+  .then((response) => {
+    const orders = response.data;
 
+    const usaOrders = orders.filter((order) => order.shipAddress.country === 'USA');
 
-  axios.get("https://northwind.vercel.app/api/orders")
-        .then(response => {
+    const usaOrderCount = usaOrders.length;
 
-          var usaCount = response.data;
+    console.log(`"USA Counts: ",${usaOrderCount}`);
+  })
+  .catch((error) => {
+    console.error('Data could not be gotten:', error);
 
-          return usaCount.filter((item) => {
-
-            if(item.country == 'USA'){return item}}).length
-
-            
-})
+});
 
 
   // 3rd Question
 
-  axios.get("https://northwind.vercel.app/api/orders")
-        .then(response => {
+  axios.get('https://northwind.vercel.app/api/orders')
+  .then((response) => {
+    const orders = response.data;
+    const orders1996 = orders.filter((order) => {
+      const orderDate = new Date(order.orderDate);
+      return orderDate.getFullYear() === 1996;
+    });
 
-          var order1996 = response.data;
+    const order1996Count = orders1996.length;
 
-          return order1996.filter((item) => {
-
-            if(item.orderDate.includes == '1996'){return item}}).length
-
-          })
-
+    console.log(`"Date 1996 Orders: ",${order1996Count}`);
+  })
+  .catch((error) => {
+    console.error('Data could not be gotten:', error);
+});
 
 </script>
 </html>
