@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+  <ul>
+
+  </ul>
+
+</body>
+
+<script>
+
+  // 1st Question
+
+
+      axios.get("https://northwind.vercel.app/api/orders")
+        .then(response => {
+
+            var orders = response.data;
+
+            orders.forEach(element => {
+
+                var liElement = document.createElement('li');
+                liElement.innerText = element.customerId
+
+                document.querySelector('ul').appendChild(liElement)
+
+            });
+
+        })
+
+
+
+  // 2nd Question
+
+
+
+  axios.get("https://northwind.vercel.app/api/orders")
+        .then(response => {
+
+          var usaCount = response.data;
+
+          return usaCount.filter((item) => {
+
+            if(item.country == 'USA'){return item}}).length
+
+            
+})
+
+
+  // 3rd Question
+
+  axios.get("https://northwind.vercel.app/api/orders")
+        .then(response => {
+
+          var order1996 = response.data;
+
+          return order1996.filter((item) => {
+
+            if(item.orderDate.includes == '1996'){return item}}).length
+
+          })
+
+
+</script>
+</html>
