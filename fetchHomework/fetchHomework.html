@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <ul>
+
+  </ul>
+  
+</body>
+
+<script>
+
+  /*
+
+  Data kaynağı: https://northwind.vercel.app/api/suppliers
+
+  1) Company Name M harfi ile başlayan supplier ları console a yaz
+
+  2) Country Japan olan kaç Supplier var?
+
+  3) Bir ul aç. Dışarıdan aldığın datayı FETCH ile içerisine doldur. Li içerisinde companyName yazacak
+
+  */
+
+  
+  // 1st Question
+
+  fetch("https://northwind.vercel.app/api/suppliers")
+
+  .then((response) => {
+      return response.json();
+    })
+  
+  .then((data) => {
+    
+    const orders = data;
+
+    var suppliers = orders.filter(x => x?.companyName.startsWith("M"));
+  
+      suppliers.forEach(item => {
+        console.log(`Company name starts with M: ${item.companyName}`);
+      });
+
+    var countSuppliersWithM = suppliers.length
+
+    console.log(`Number of Company Name Starts with M: ${countSuppliersWithM}`);
+
+})
+
+
+  // 2nd Question
+
+  fetch("https://northwind.vercel.app/api/suppliers")
+  
+  .then((response) => {
+    return response.json();
+  })
+
+  .then((data) => {
+    
+    const orders = data;
+
+    var suppliers = orders.filter(x => x.address?.country === "Japan");
+
+    const japanCount = suppliers.length;
+
+    console.log(`Japanese Suppliers Count: ${japanCount}`);
+})
+
+
+  // 3rd Question
+
+  fetch("https://northwind.vercel.app/api/suppliers")
+
+  .then(response => response.json())
+
+  .then(item => {
+    item.forEach(element => {
+      var liElement = document.createElement('li')
+      liElement.innerHTML = element.companyName
+      document.querySelector('ul').appendChild(liElement)
+    })
+  })
+
+</script>
+
+</html>
